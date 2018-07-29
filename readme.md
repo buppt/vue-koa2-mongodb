@@ -12,6 +12,6 @@ node app.js
 
 ## 实战
 article9中的实战效果如下：
-<img src="./article9-memo/memo.gif" style="width: 50%; display: block"/>
+<img src="./article9-memo/memo.gif" width="50%"/>
 
 不定期更新...
