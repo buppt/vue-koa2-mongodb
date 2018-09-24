@@ -1,21 +1,34 @@
-# vue
+# koa2-learn-demo
 
-> A Vue.js project
+<img src = './static/memo.gif' width = '50%' />
 
-## Build Setup
 
-``` bash
-# install dependencies
+## install 
+
+``` 
 npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+You need to install MySQL and modify mysql's password in `app.js` .
+
+Then create a new database and a table .
+```
+create database koaDemo;
+use koaDemo;
+
+create table if not exists memo(
+id INT NOT NULL AUTO_INCREMENT,
+things VARCHAR(100) NOT NULL,
+status TINYINT NOT NULL,
+PRIMARY KEY ( id )
+);
+
+```
+
+## run
+
+```
+node app.js
+```
+
+`server starts at localhost:3000`
