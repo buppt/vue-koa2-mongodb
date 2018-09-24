@@ -1,17 +1,21 @@
+# vue
 
-## 使用
-在根目录下安装依赖，
-```
+> A Vue.js project
+
+## Build Setup
+
+``` bash
+# install dependencies
 npm install
-```
-想要运行某个项目，要把这个项目放到安装依赖的根目录下运行。如
-```
-node app.js
-```
-然后就可以在http://localhost:3000查看项目了。
 
-## 实战
-article9中的实战效果如下：
-<img src="./article9-memo/memo.gif" width="50%"/>
+# serve with hot reload at localhost:8080
+npm run dev
 
-不定期更新...
+# build for production with minification
+npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
+```
+
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
