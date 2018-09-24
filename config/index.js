@@ -38,7 +38,7 @@ module.exports = {
     //api 跨域
     proxyTable:{
       '/api':{
-          target: 'http://localhost:3000',
+          target: 'http://localhost:3000/api',
           changeOrigin: true,
           pathRewrite: {
             '^/api': ''

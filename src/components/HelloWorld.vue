@@ -31,7 +31,7 @@ export default {
         this.$message.error('获取列表失败！')
       }
     }, (err) => {
-      this.$message.error('获取列表失败！')
+      this.$message.error('连接数据库失败！')
       console.log(err)
     })
   },
@@ -39,8 +39,8 @@ export default {
     return {
       msg: 'Welcome to Your Memo',
       things:"",
-      items:["吃饭","wash"],
-      itemsFinished:["haha"]
+      items:["吃饭","watch TV"],
+      itemsFinished:["sleep"]
     }
   },
   methods: {
@@ -53,6 +53,10 @@ export default {
           .then(function (response) {
             if(response.data.status == true){
               that.items.push(thing);
+              that.$message({
+                message: '添加成功～',
+                type: 'success'
+              });
             }else{
               that.$message({
                 message: '添加失败，请重新添加！',
@@ -84,6 +88,10 @@ export default {
         if(response.data.status == true){
           that.items.splice(index,1);
           that.itemsFinished.push(item);
+          that.$message({
+            message: '操作成功～',
+            type: 'success'
+          });
         }else{
           that.$message({
             message: '操作失败，请重新操作！',
@@ -102,6 +110,10 @@ export default {
       .then(function (response) {
         if(response.data.status == true){
           that.itemsFinished.splice(index,1);
+          that.$message({
+            message: '操作成功～',
+            type: 'success'
+          });
         }else{
           that.$message({
             message: '操作失败，请重新操作！',
