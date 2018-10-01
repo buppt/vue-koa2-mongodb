@@ -2,14 +2,13 @@
 
 <img src = './static/memo.gif' width = '100%' />
 
-
 ## Install 
 
 ``` 
 npm install
 ```
 
-You need to install MySQL and modify mysql's password in `app.js` .
+You need to install MySQL and set mysql's password in `app.js` .
 
 Then create a new database and a table .
 ```
@@ -37,7 +36,7 @@ This `app.js` makes a static resource server for `dist` folder.
 
 `dist` folder is built by vue.
 
-So you can visit localhost:3000 for production environment.
+So you can visit localhost:3000 for production environment.
 
 Also you can run in another terminal
 ```
@@ -51,3 +50,5 @@ If you modify vue code, you can run
 npm run build
 ```
 and then you can visit localhost:3000 for production environment .
+
+
