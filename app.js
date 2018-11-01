@@ -15,7 +15,7 @@ app.use(static(
 ))
 
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/runoob";
+var url = "mongodb://localhost:27017/";
 var db
 
 MongoClient.connect(url, function(err, database) {

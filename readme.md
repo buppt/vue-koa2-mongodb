@@ -1,16 +1,37 @@
 # koa2-learn-demo
+主要是为了尝试一下koa2连接使用mongodb和mysql。
 
 <img src = './static/memo.gif' width = '100%' />
 
-## Install 
+## mongodb数据库
+
+master分支是mongodb练习
 
 ``` 
 npm install
 ```
 
-You need to install MySQL and set mysql's password in `app.js` .
+<a href="https://www.mongodb.com/download-center/community">mongodb官网</a>，具体安装、使用和简单操作可以查看<a href="https://blog.csdn.net/buppt/article/details/83586179">这篇文章</a>。
 
-Then create a new database and a table .
+开启mongodb数据库后。
+
+```
+node app.js
+```
+
+由于做了静态资源服务器，可以直接访问`localhost:3000`。
+
+
+也可以再开一个终端，`npm run dev`，`localhost:8080`。
+
+
+## mysql数据库
+
+mysql分支是mysql练习。
+
+下载安装好mysql后，在`app.js`中设置自己mysql的密码。
+
+在mysql中创建数据库和数据表。
 ```
 create database koaDemo;
 use koaDemo;
@@ -23,32 +44,6 @@ PRIMARY KEY ( id )
 );
 
 ```
-
-## Run
-
-```
-node app.js
-```
-
-Server starts at localhost:3000 .
-
-This `app.js` makes a static resource server for `dist` folder.
-
-`dist` folder is built by vue.
-
-So you can visit localhost:3000 for production environment.
-
-Also you can run in another terminal
-```
-npm run dev
-```
-and visit localhost:8080 for development environment . It uses apis at localhost:3000 .  
-
-
-If you modify vue code, you can run 
-```
-npm run build
-```
-and then you can visit localhost:3000 for production environment .
+剩下同上。
 
 
