@@ -8,10 +8,9 @@
     <el-row>
       <el-col :span="8" :offset="8">
         <li v-for="(item,index) in items" :key="index+item">
-          {{index+1}}. {{item}} <el-button class="finish" type="success" icon="el-icon-check" size="mini" circle @click="finishFunc(index)"></el-button>
-        </li>
-        <li v-for="(item,index) in itemsFinished" :key="index+item">
-          {{index+1}}. <del>{{item}}</del> <el-button class="finish" type="info" icon="el-icon-delete" size="mini" circle @click="delFunc(index)"></el-button>
+          {{index+1}}. {{item.content}} 
+		  <el-button v-if="item.finish==0" class="finish" type="success" icon="el-icon-check" size="mini" circle @click="finishFunc(index)"></el-button>
+		  <el-button v-else class="finish" type="info" icon="el-icon-delete" size="mini" circle @click="delFunc(index)"></el-button>
         </li>
       </el-col>
     </el-row>
@@ -25,8 +24,7 @@ export default {
     this.$http.get('/api/getMemo')
     .then((res) => {
       if (res.status === 200) {
-        this.items = res.data.items;
-        this.itemsFinished = res.data.itemsFinished;
+        this.items = res.data;
       } else {
         this.$message.error('获取列表失败！')
       }
@@ -47,47 +45,47 @@ export default {
     addContentFunc(){
       let thing = this.things;
       let that = this;
-      if(thing!=""){
-        if(that.items.indexOf(thing)==-1){
-          that.$http.post('/api/addMemo', {things:thing})
-          .then(function (response) {
-            if(response.data.status == true){
-              that.items.push(thing);
-              that.$message({
-                message: '添加成功～',
-                type: 'success'
-              });
-            }else{
-              that.$message({
-                message: '添加失败，请重新添加！',
-                type: 'warning'
-              });
-            }
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-        }else{
-          that.$message({
-          message: '请不要重复输入!',
-          type: 'warning'
-        });
-        }
-      }else{
-        that.$message({
+      if(thing==""){
+        this.$message({
           message: '备忘录不能为空哦!',
           type: 'warning'
         });
+        return ;
       }
+      if(this.items.indexOf(thing)!=-1){
+        this.$message({
+          message: '任务已存在!',
+          type: 'warning'
+        });
+        return ;
+      }
+      this.$http.post('/api/addMemo', {content:thing})
+      .then(function (response) {
+        if(response.data == "success"){
+          that.items.unshift({"content":thing,"finish":0});
+          that.$message({
+            message: '添加成功～',
+            type: 'success'
+          });
+        }else{
+          that.$message({
+            message: '添加失败，请重新添加！',
+            type: 'warning'
+          });
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     },
     finishFunc(index){
       let that = this;
       let item=this.items[index];
-      this.$http.put('/api/updateMemo', {things:item})
+      this.$http.put('/api/updateMemo', item)
       .then(function (response) {
-        if(response.data.status == true){
-          that.items.splice(index,1);
-          that.itemsFinished.push(item);
+        if(response.data == "success"){
+          that.items[index].finish = 1;
+          that.items.sort(that.compare("finish"))
           that.$message({
             message: '操作成功～',
             type: 'success'
@@ -105,11 +103,11 @@ export default {
     },
     delFunc(index){
       let that = this;
-      let item=this.itemsFinished[index];
-      this.$http.delete('/api/delMemo/'+encodeURI(item))
+      let item=this.items[index];
+      this.$http.delete('/api/delMemo/'+encodeURI(item.content))
       .then(function (response) {
-        if(response.data.status == true){
-          that.itemsFinished.splice(index,1);
+        if(response.data == "success"){
+          that.items.splice(index,1);
           that.$message({
             message: '操作成功～',
             type: 'success'
@@ -124,7 +122,13 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
-      
+    },
+    compare(property){
+      return function(obj1,obj2){
+        let val1 = obj1[property];
+        let val2 = obj2[property];
+        return val1-val2;
+      }
     }
   }
 }
