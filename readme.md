@@ -1,9 +1,9 @@
 # koa2-learn-demo
-主要是为了尝试一下koa2连接使用mongodb和mysql。
+主要是为了尝试一下koa2连接使用mongodb和mysql。
 
 <img src = './static/memo.gif' width = '100%' />
 
-## mongodb数据库
+## mongodb数据库
 
 master分支是mongodb练习
 
@@ -11,15 +11,15 @@ master分支是mongodb练习
 npm install
 ```
 
-<a href="https://www.mongodb.com/download-center/community">mongodb官网</a>，具体安装、使用和简单操作可以查看<a href="https://blog.csdn.net/buppt/article/details/83586179">这篇文章</a>。
+<a href="https://www.mongodb.com/download-center/community">mongodb官网</a>，具体安装、使用和简单操作可以查看<a href="https://blog.csdn.net/buppt/article/details/83586179">这篇文章</a>。
 
-开启mongodb数据库后。
+开启mongodb数据库后。
 
 ```
 node app.js
 ```
 
-由于做了静态资源服务器，可以直接访问`localhost:3000`。
+由于做了静态资源服务器，可以直接访问`localhost:3000`。
 
 
 也可以再开一个终端，`npm run dev`，`localhost:8080`。
@@ -44,6 +44,6 @@ PRIMARY KEY ( id )
 );
 
 ```
-剩下同上。
+剩下同上。
 
 
